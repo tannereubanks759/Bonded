@@ -24,6 +24,9 @@ public class CharacterControllerScript : MonoBehaviour
     //keybinds
     public KeyCode jump = KeyCode.Space;
     public KeyCode sprint = KeyCode.LeftShift;
+    public KeyCode flashlight = KeyCode.F;
+    
+    public GameObject flashlightObj;
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +72,18 @@ public class CharacterControllerScript : MonoBehaviour
         else
         {
             moveSpeed = defaultSpeed;
+        }
+
+        if (Input.GetKeyDown(flashlight))
+        {
+            if (flashlightObj.activeSelf)
+            {
+                flashlightObj.SetActive(false);
+            }
+            else
+            {
+                flashlightObj.SetActive(true);
+            }
         }
     }
     public void CursorDisable()
