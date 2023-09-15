@@ -56,11 +56,7 @@ public class CharacterControllerScript : MonoBehaviour
 
         //looking
         mouseX = Input.GetAxisRaw("Mouse X");
-        mouseY = Input.GetAxisRaw("Mouse Y");
         yRotation += mouseX * senseX * multiplier;
-        xRotation -= mouseY * senseY * multiplier;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        mainCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
 
         

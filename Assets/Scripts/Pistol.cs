@@ -47,7 +47,14 @@ public class Pistol : MonoBehaviour
 
         RayOrigin = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (Physics.Raycast(RayOrigin, out hit, range, mask)){
-            Instantiate(bulletPlane, hit.point + (hit.normal * .01f), Quaternion.FromToRotation(Vector3.up, hit.normal));
+            if(hit.collider.gameObject.tag == "parasite")
+            {
+                hit.collider.gameObject.GetComponent<Parasite>().damaged();
+            }
+            else
+            {
+                Instantiate(bulletPlane, hit.point + (hit.normal * .01f), Quaternion.FromToRotation(Vector3.up, hit.normal));
+            }
         }
 
         magazine -= 1;

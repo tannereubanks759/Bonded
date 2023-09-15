@@ -1,22 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class Parasite : MonoBehaviour
 {
     public float health = 100;
-    
+    public int hitTimes = 0;
 
     //this will be the variables to control the state in which the parasite is in at any given moment
     public enum enemyStates {Chasing, Roaming, Eating, Sleeping};
     public enemyStates state;
     private enemyStates cashedState;
 
+    private NavMeshAgent agent;
 
-
+    public GameObject eatObject;
+    public GameObject sleepObject;
     void Start()
     {
-        state = enemyStates.Roaming;
+        agent = GetComponent<NavMeshAgent>();
     }
 
 
@@ -50,10 +52,26 @@ public class Parasite : MonoBehaviour
     }
     void Eating()
     {
+        if(agent == null)
+        {
+            return;
+        }
+        agent.SetDestination(eatObject.transform.position);
 
+        if(hitTimes == 5)
+        {
+            state = enemyStates.Sleeping;
+        }
     }
     void Sleeping()
     {
+        agent.speed = 10;
+        agent.SetDestination(sleepObject.transform.position);
+    }
 
+
+    public void damaged()
+    {
+        hitTimes += 1;
     }
 }
