@@ -925,7 +925,9 @@ MonoBehaviour:
   jump: 32
   sprint: 304
   flashlight: 102
+  pistol: 49
   flashlightObj: {fileID: 1862208722}
+  pistolObj: {fileID: 140372496}
 --- !u!136 &985495882
 CapsuleCollider:
   m_ObjectHideFlags: 0

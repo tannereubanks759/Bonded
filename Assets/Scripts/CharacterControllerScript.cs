@@ -25,8 +25,10 @@ public class CharacterControllerScript : MonoBehaviour
     public KeyCode jump = KeyCode.Space;
     public KeyCode sprint = KeyCode.LeftShift;
     public KeyCode flashlight = KeyCode.F;
+    public KeyCode pistol = KeyCode.Alpha1;
     
     public GameObject flashlightObj;
+    public GameObject pistolObj;
 
     // Start is called before the first frame update
     void Start()
@@ -53,9 +55,9 @@ public class CharacterControllerScript : MonoBehaviour
             velocity.y += -9.81f * Time.deltaTime;
         }
         moveDirection = transform.forward * vertical + transform.right * horizontal;
+
         controller.SimpleMove(moveDirection.normalized * moveSpeed);
         controller.Move(velocity * Time.deltaTime);
-
 
         //looking
         mouseX = Input.GetAxisRaw("Mouse X");
@@ -85,6 +87,17 @@ public class CharacterControllerScript : MonoBehaviour
                 flashlightObj.SetActive(true);
             }
         }
+        if (Input.GetKeyDown(pistol))
+        {
+            if (pistolObj.activeSelf)
+            {
+                pistolObj.SetActive(false);
+            }
+            else
+            {
+                pistolObj.SetActive(true);
+            }
+        }
     }
     public void CursorDisable()
     {
@@ -93,6 +106,7 @@ public class CharacterControllerScript : MonoBehaviour
     }
     public void CursorEnable()
     {
-
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
