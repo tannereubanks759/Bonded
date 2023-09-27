@@ -25,16 +25,33 @@ public class Pistol : MonoBehaviour
     public int totalAmmo;
 
     public TextMeshProUGUI AmmoText;
+
+    public AudioSource sound;
+    public AudioClip ShootSound;
+    public AudioClip Reload;
+    public AudioClip OutOfAmmoClip;
+
+
+    public float fireRate;
+    float nextFire;
     void Start()
     {
+        sound.clip = ShootSound;
         UpdateUI();
+        nextFire = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(shootKey) && magazine != 0){
+        if (Input.GetKeyDown(shootKey) && magazine != 0 && Time.time > nextFire){
             shoot();
+            nextFire = Time.time + fireRate;
+        }
+        else if (Input.GetKeyDown(shootKey) && magazine <= 0)
+        {
+            sound.clip = OutOfAmmoClip;
+            sound.Play();
         }
         if(Input.GetKeyDown(reloadKey) && magazine != 5)
         {
@@ -44,7 +61,7 @@ public class Pistol : MonoBehaviour
     }
     void shoot()
     {
-
+        sound.Play();
         RayOrigin = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (Physics.Raycast(RayOrigin, out hit, range, mask)){
             if(hit.collider.gameObject.tag == "parasite")
@@ -62,7 +79,11 @@ public class Pistol : MonoBehaviour
     }
     void reload()
     {
-        
+        if(totalAmmo != 0)
+        {
+            sound.PlayOneShot(Reload, 1);
+            sound.clip = ShootSound;
+        }
         int reloadAmount = 5 - magazine;
         if (totalAmmo >= reloadAmount)
         {
