@@ -49,6 +49,7 @@ public class Pistol : MonoBehaviour
         if (Physics.Raycast(RayOrigin, out hit, range, mask)){
             if(hit.collider.gameObject.tag == "parasite")
             {
+                Debug.Log("Hit Parasite");
                 hit.collider.gameObject.GetComponent<Parasite>().damaged();
             }
             else
@@ -56,16 +57,27 @@ public class Pistol : MonoBehaviour
                 Instantiate(bulletPlane, hit.point + (hit.normal * .01f), Quaternion.FromToRotation(Vector3.up, hit.normal));
             }
         }
-
-        magazine -= 1;
-        UpdateUI();
+         magazine -= 1;
+         UpdateUI();
     }
     void reload()
     {
+        
         int reloadAmount = 5 - magazine;
-        totalAmmo -= reloadAmount;
-        magazine += reloadAmount;
-        UpdateUI();
+        if (totalAmmo >= reloadAmount)
+        {
+            totalAmmo -= reloadAmount;
+            magazine += reloadAmount;
+            UpdateUI();
+        }
+        else
+        {
+            magazine += totalAmmo;
+            totalAmmo = 0;
+            UpdateUI();
+        }
+        
+        
     }
 
     void UpdateUI()
