@@ -8,7 +8,6 @@ public class OffsetFlashlight : MonoBehaviour
     public GameObject goFollow;
     float speed = 15.0f;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +27,10 @@ public class OffsetFlashlight : MonoBehaviour
             speed = 10;
         }
         */
+        
         transform.position = goFollow.transform.position + vectOffset;
         transform.rotation = Quaternion.Slerp(transform.rotation, goFollow.transform.rotation, speed * Time.deltaTime);
+        
+        
     }
 }

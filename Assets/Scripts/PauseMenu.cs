@@ -6,10 +6,12 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     public KeyCode pauseKey = KeyCode.Escape;
+    CharacterControllerScript controller;
     // Start is called before the first frame update
     void Start()
     {
         pauseMenu.SetActive(false);
+        controller = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterControllerScript>();
         CursorDisable();
     }
 
@@ -24,6 +26,7 @@ public class PauseMenu : MonoBehaviour
             }
             else
             {
+                controller.PauseCharacterMovement(true);
                 pauseMenu.SetActive(true);
                 CursorEnable();
             }
@@ -32,7 +35,7 @@ public class PauseMenu : MonoBehaviour
 
     public void resume()
     {
-
+        controller.PauseCharacterMovement(false);
         CursorDisable();
         pauseMenu.SetActive(false);
     }

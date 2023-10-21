@@ -30,39 +30,45 @@ public class CharacterControllerScript : MonoBehaviour
     public GameObject flashlightObj;
     public GameObject pistolObj;
 
+    public bool isPaused;
     // Start is called before the first frame update
     void Start()
     {
+        isPaused = false;
         CursorDisable();
         controller = GetComponent<CharacterController>();
         mainCamera = Camera.main;
         defaultSpeed = moveSpeed;
-        sprintSpeed = moveSpeed * 2f;
+        sprintSpeed = moveSpeed * 1.5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //movement
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
-        if (controller.isGrounded && Input.GetKey(jump))
+        if (!isPaused)
         {
-            velocity.y = jumpForce;
-        }
-        else
-        {
-            velocity.y += -9.81f * Time.deltaTime;
-        }
-        moveDirection = transform.forward * vertical + transform.right * horizontal;
+            //movement
+            horizontal = Input.GetAxisRaw("Horizontal");
+            vertical = Input.GetAxisRaw("Vertical");
+            if (controller.isGrounded && Input.GetKey(jump))
+            {
+                velocity.y = jumpForce;
+            }
+            else
+            {
+                velocity.y += -9.81f * Time.deltaTime;
+            }
+            moveDirection = transform.forward * vertical + transform.right * horizontal;
 
-        controller.SimpleMove(moveDirection.normalized * moveSpeed);
-        controller.Move(velocity * Time.deltaTime);
+            controller.SimpleMove(moveDirection.normalized * moveSpeed);
+            controller.Move(velocity * Time.deltaTime);
 
-        //looking
-        mouseX = Input.GetAxisRaw("Mouse X");
-        yRotation += mouseX * senseX * multiplier;
-        transform.rotation = Quaternion.Euler(0, yRotation, 0);
+            //looking
+            mouseX = Input.GetAxisRaw("Mouse X");
+            yRotation += mouseX * senseX * multiplier;
+            transform.rotation = Quaternion.Euler(0, yRotation, 0);
+        }
+        
 
         
 
@@ -108,5 +114,19 @@ public class CharacterControllerScript : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+    public void PauseCharacterMovement(bool value)
+    {
+        isPaused = value;
+        if (value == true)
+        {
+            mainCamera.GetComponent<FlashlightLook>().isPaused = true;
+            flashlightObj.GetComponentInParent<FlashlightLook>().isPaused = true;
+        }
+        else
+        {
+            mainCamera.GetComponent<FlashlightLook>().isPaused = false;
+            flashlightObj.GetComponentInParent<FlashlightLook>().isPaused = false;
+        }
     }
 }
