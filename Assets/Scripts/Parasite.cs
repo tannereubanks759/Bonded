@@ -16,6 +16,10 @@ public class Parasite : MonoBehaviour
 
     public GameObject eatObject;
     public GameObject sleepObject;
+
+    public List<GameObject> EatPositions;
+    public List<GameObject> SleepPositions;
+    public GameObject parasiteHome;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -52,6 +56,7 @@ public class Parasite : MonoBehaviour
     }
     void Eating()
     {
+        agent.speed = 3.5f;
         if(agent == null)
         {
             return;
@@ -60,18 +65,40 @@ public class Parasite : MonoBehaviour
 
         if(hitTimes == 5)
         {
+            eatObject = (GameObject)EatPositions[EatPositions.IndexOf(eatObject) + 1];
             state = enemyStates.Sleeping;
         }
+        
     }
     void Sleeping()
     {
-        agent.speed = 10;
-        agent.SetDestination(sleepObject.transform.position);
+        hitTimes = 0;
+        if(agent.speed != 0)
+        {
+            agent.SetDestination(sleepObject.transform.position);
+            agent.speed = 10;
+        }
+        if (inRange(sleepObject))
+        {
+            agent.speed = 0;
+            agent.Warp(parasiteHome.transform.position);
+            sleepObject = (GameObject)SleepPositions[SleepPositions.IndexOf(sleepObject) + 1];
+        }
     }
-
 
     public void damaged()
     {
         hitTimes += 1;
+    }
+
+    public bool inRange(GameObject obj)
+    {
+        bool inRange = Vector3.Distance(transform.position, obj.transform.position) <= 1;
+        return inRange;
+    }
+
+    public void SetStateToEating()
+    {
+        this.state = enemyStates.Eating;
     }
 }
