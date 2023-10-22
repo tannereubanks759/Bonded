@@ -120,13 +120,11 @@ public class CharacterControllerScript : MonoBehaviour
         isPaused = value;
         if (value == true)
         {
-            mainCamera.GetComponent<FlashlightLook>().isPaused = true;
-            flashlightObj.GetComponentInParent<FlashlightLook>().isPaused = true;
+            FlashlightLook.isPaused = true;
         }
         else
         {
-            mainCamera.GetComponent<FlashlightLook>().isPaused = false;
-            flashlightObj.GetComponentInParent<FlashlightLook>().isPaused = false;
+            FlashlightLook.isPaused = false;
         }
     }
 }

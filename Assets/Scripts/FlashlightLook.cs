@@ -8,7 +8,7 @@ public class FlashlightLook : MonoBehaviour
     float mouseX, mouseY, multiplier = .01f, xRotation, yRotation;
     public float senseX, senseY;
 
-    public bool isPaused = false;
+    public static bool isPaused = false;
     private void Update()
     {
         if(isPaused == false)
