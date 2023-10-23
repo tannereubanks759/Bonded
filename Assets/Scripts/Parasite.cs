@@ -101,4 +101,8 @@ public class Parasite : MonoBehaviour
     {
         this.state = enemyStates.Eating;
     }
+    public void TeleportToSleep()
+    {
+        agent.Warp(sleepObject.transform.position);
+    }
 }

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class CharacterControllerScript : MonoBehaviour
 {
     //movement variables
@@ -31,6 +31,10 @@ public class CharacterControllerScript : MonoBehaviour
     public GameObject pistolObj;
 
     public bool isPaused;
+
+    //Pickup Object Variables
+    public bool hasFlashlight = false;
+    public bool hasGun = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +44,9 @@ public class CharacterControllerScript : MonoBehaviour
         mainCamera = Camera.main;
         defaultSpeed = moveSpeed;
         sprintSpeed = moveSpeed * 1.5f;
+
+        flashlightObj.SetActive(false);
+        pistolObj.SetActive(false);
     }
 
     // Update is called once per frame
@@ -82,7 +89,7 @@ public class CharacterControllerScript : MonoBehaviour
             moveSpeed = defaultSpeed;
         }
 
-        if (Input.GetKeyDown(flashlight))
+        if (Input.GetKeyDown(flashlight) && hasFlashlight)
         {
             if (flashlightObj.activeSelf)
             {
@@ -93,7 +100,7 @@ public class CharacterControllerScript : MonoBehaviour
                 flashlightObj.SetActive(true);
             }
         }
-        if (Input.GetKeyDown(pistol))
+        if (Input.GetKeyDown(pistol) && hasGun)
         {
             if (pistolObj.activeSelf)
             {
@@ -127,4 +134,5 @@ public class CharacterControllerScript : MonoBehaviour
             FlashlightLook.isPaused = false;
         }
     }
+    
 }

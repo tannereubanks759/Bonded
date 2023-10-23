@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - parasite
+  - PICKUP
   layers:
   - Default
   - TransparentFX
