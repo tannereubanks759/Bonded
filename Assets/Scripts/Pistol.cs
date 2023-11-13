@@ -71,7 +71,7 @@ public class Pistol : MonoBehaviour
             }
             else
             {
-                Instantiate(bulletPlane, hit.point + (hit.normal * .01f), Quaternion.FromToRotation(Vector3.up, hit.normal));
+                //Instantiate(bulletPlane, hit.point + (hit.normal * .01f), Quaternion.FromToRotation(Vector3.up, hit.normal));
             }
         }
          magazine -= 1;

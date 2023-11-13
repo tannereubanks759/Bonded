@@ -9,6 +9,11 @@ public class FlashlightLook : MonoBehaviour
     public float senseX, senseY;
 
     public static bool isPaused = false;
+
+    private void Start()
+    {
+        isPaused = false;
+    }
     private void Update()
     {
         if(isPaused == false)

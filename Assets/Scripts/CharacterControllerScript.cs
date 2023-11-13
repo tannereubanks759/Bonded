@@ -30,7 +30,7 @@ public class CharacterControllerScript : MonoBehaviour
     public GameObject flashlightObj;
     public GameObject pistolObj;
 
-    public bool isPaused;
+    public bool isPaused = false;
 
     //Pickup Object Variables
     public bool hasFlashlight = false;
@@ -45,6 +45,7 @@ public class CharacterControllerScript : MonoBehaviour
         defaultSpeed = moveSpeed;
         sprintSpeed = moveSpeed * 1.5f;
 
+        isPaused = false;
         flashlightObj.SetActive(false);
         pistolObj.SetActive(false);
     }
@@ -112,7 +113,7 @@ public class CharacterControllerScript : MonoBehaviour
             }
         }
     }
-    public void CursorDisable()
+    public void CursorDisable() 
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

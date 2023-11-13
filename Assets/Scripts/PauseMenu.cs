@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         controller = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterControllerScript>();
         CursorDisable();
+        controller.isPaused = false;
     }
 
     // Update is called once per frame
