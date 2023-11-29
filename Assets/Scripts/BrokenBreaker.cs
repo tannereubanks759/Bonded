@@ -8,6 +8,7 @@ public class BrokenBreaker : MonoBehaviour
     public GameObject lever;
     public GameObject window;
     public PickupObj pickup;
+    public Parasite enemy;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,16 +28,20 @@ public class BrokenBreaker : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.name == lever.name)
+        if (enemy.state == Parasite.enemyStates.Sleeping)
         {
-            lever.SetActive(true);
-            pickup.DropAndDelete();
+            if (other.name == lever.name)
+            {
+                lever.SetActive(true);
+                pickup.DropAndDelete();
+            }
+            if (other.name == window.name)
+            {
+                window.SetActive(true);
+                pickup.DropAndDelete();
+            }
         }
-        if(other.name == window.name)
-        {
-            window.SetActive(true);
-            pickup.DropAndDelete();
-        }
+        
     }
 }
 

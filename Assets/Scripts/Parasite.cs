@@ -20,9 +20,14 @@ public class Parasite : MonoBehaviour
     public List<GameObject> EatPositions;
     public List<GameObject> SleepPositions;
     public GameObject parasiteHome;
+
+    public Animator anim;
+
+    private float sleepingTime = 0;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        state = enemyStates.Eating;
     }
 
 
@@ -65,25 +70,46 @@ public class Parasite : MonoBehaviour
 
         if(hitTimes == 5)
         {
-            eatObject = (GameObject)EatPositions[EatPositions.IndexOf(eatObject) + 1];
-            state = enemyStates.Sleeping;
+            if(eatObject == EatPositions[EatPositions.Count - 1])
+            {
+                state = enemyStates.Sleeping;
+            }
+            else
+            {
+                eatObject = (GameObject)EatPositions[EatPositions.IndexOf(eatObject) + 1];
+                state = enemyStates.Sleeping;
+            }
+            
         }
         
     }
     void Sleeping()
     {
-        hitTimes = 0;
-        if(agent.speed != 0)
+        if(anim.GetBool("GoIn") == false)
         {
-            agent.SetDestination(sleepObject.transform.position);
-            agent.speed = 10;
+            hitTimes = 0;
+            if (agent.speed != 0)
+            {
+                agent.SetDestination(sleepObject.transform.position);
+                agent.speed = 10;
+                sleepingTime = Time.time + .8f;
+            }
+            if (inRange(sleepObject))
+            {
+                agent.speed = 0;
+                Vector3 targetDirection = sleepObject.GetComponentInChildren<BoxCollider>().gameObject.transform.position - this.transform.position;
+                float SingleStep = Time.deltaTime * 5;
+                Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, SingleStep, 0.0f);
+                transform.rotation = Quaternion.LookRotation(newDirection);
+                
+                if(Time.time > sleepingTime)
+                {
+                    anim.SetBool("GoIn", true);
+                }
+
+            }
         }
-        if (inRange(sleepObject))
-        {
-            agent.speed = 0;
-            agent.Warp(parasiteHome.transform.position);
-            sleepObject = (GameObject)SleepPositions[SleepPositions.IndexOf(sleepObject) + 1];
-        }
+        
     }
 
     public void damaged()
@@ -93,7 +119,7 @@ public class Parasite : MonoBehaviour
 
     public bool inRange(GameObject obj)
     {
-        bool inRange = Vector3.Distance(transform.position, obj.transform.position) <= 1;
+        bool inRange = Vector3.Distance(transform.position, obj.transform.position) <= .1;
         return inRange;
     }
 
@@ -104,5 +130,12 @@ public class Parasite : MonoBehaviour
     public void TeleportToSleep()
     {
         agent.Warp(sleepObject.transform.position);
+    }
+
+    public void DoneVenting()
+    {
+        anim.SetBool("GoIn", false);
+        sleepObject = SleepPositions[SleepPositions.IndexOf(sleepObject) + 1];  //go to next vent the next time this parasite sleeps
+        agent.Warp(parasiteHome.transform.position);
     }
 }

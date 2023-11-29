@@ -35,9 +35,17 @@ public class CharacterControllerScript : MonoBehaviour
     //Pickup Object Variables
     public bool hasFlashlight = false;
     public bool hasGun = false;
+
+    //sound
+    public AudioSource walkSource;
+    public AudioClip[] runClips;
+    public float runFrequency = .2f;
+    private float runNextTime = 0;
+    
     // Start is called before the first frame update
     void Start()
     {
+        runNextTime = 0;
         isPaused = false;
         CursorDisable();
         controller = GetComponent<CharacterController>();
@@ -71,10 +79,44 @@ public class CharacterControllerScript : MonoBehaviour
             controller.SimpleMove(moveDirection.normalized * moveSpeed);
             controller.Move(velocity * Time.deltaTime);
 
+            //sounds of walking and running
+            if((horizontal > .1 || vertical > .1 || horizontal < -.1 || vertical < -.1) && walkSource.isPlaying == false  && Input.GetKey(sprint) == false)
+            {
+                walkSource.Play();
+            }
+            else if(Input.GetKey(sprint) && (horizontal > .1 || vertical > .1) && Time.time > runNextTime)
+            {
+                if(walkSource.isPlaying == false)
+                {
+                    walkSource.Play();
+                }
+                int random = (int)Random.Range(1, runClips.Length);
+                walkSource.PlayOneShot(runClips[random], 1);
+                runNextTime = Time.time + runFrequency;
+            }
+            else if(horizontal < .1 && vertical < .1 )
+            {
+                walkSource.Stop();
+            }
+
+
             //looking
             mouseX = Input.GetAxisRaw("Mouse X");
             yRotation += mouseX * senseX * multiplier;
             transform.rotation = Quaternion.Euler(0, yRotation, 0);
+
+            //crouching
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                if(controller.height > 1)
+                {
+                    controller.height /= 2;
+                }
+                else
+                {
+                    controller.height *= 2;
+                }
+            }
         }
         
 

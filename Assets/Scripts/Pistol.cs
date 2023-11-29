@@ -67,7 +67,7 @@ public class Pistol : MonoBehaviour
             if(hit.collider.gameObject.tag == "parasite")
             {
                 Debug.Log("Hit Parasite");
-                hit.collider.gameObject.GetComponent<Parasite>().damaged();
+                hit.collider.gameObject.GetComponentInParent<BoxCollider>().gameObject.GetComponentInParent<Parasite>().damaged();
             }
             else
             {
