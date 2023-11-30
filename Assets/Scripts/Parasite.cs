@@ -24,10 +24,14 @@ public class Parasite : MonoBehaviour
     public Animator anim;
 
     private float sleepingTime = 0;
+
+    private bool hasSleepTime;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         state = enemyStates.Eating;
+
+        hasSleepTime = false;
     }
 
 
@@ -81,11 +85,36 @@ public class Parasite : MonoBehaviour
             }
             
         }
+        if (eatObject == EatPositions[1] && inRange(eatObject))
+        {
+            Debug.Log("InRange");
+            if (anim.GetBool("breakLight") == false)
+            {
+                if(agent.speed != 0 && hasSleepTime == false)
+                {
+                    sleepingTime = Time.time + 2f;
+                    hasSleepTime = true;
+                }
+                    
+                agent.speed = 0;
+                Vector3 targetDirection = GameObject.Find("LightCol").transform.position - this.transform.position;
+                float SingleStep = Time.deltaTime * 5;
+                Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, SingleStep, 0.0f);
+                transform.rotation = Quaternion.LookRotation(newDirection);
+
+                if (Time.time > sleepingTime)
+                {
+                    anim.SetBool("breakLight", true);
+                }
+            }
+        }
         
     }
     void Sleeping()
     {
-        if(anim.GetBool("GoIn") == false)
+        anim.SetBool("breakLight", false);
+        anim.SetBool("BreakLEnter", false);
+        if (anim.GetBool("GoIn") == false)
         {
             hitTimes = 0;
             if (agent.speed != 0)
@@ -122,6 +151,11 @@ public class Parasite : MonoBehaviour
         bool inRange = Vector3.Distance(transform.position, obj.transform.position) <= .1;
         return inRange;
     }
+    public bool inRange(GameObject obj, float distance)
+    {
+        bool inRange = Vector3.Distance(transform.position, obj.transform.position) <= distance;
+        return inRange;
+    }
 
     public void SetStateToEating()
     {
@@ -137,5 +171,10 @@ public class Parasite : MonoBehaviour
         anim.SetBool("GoIn", false);
         sleepObject = SleepPositions[SleepPositions.IndexOf(sleepObject) + 1];  //go to next vent the next time this parasite sleeps
         agent.Warp(parasiteHome.transform.position);
+    }
+
+    public void EnterBreakPanel()
+    {
+        anim.SetBool("BreakLEnter", true);
     }
 }
