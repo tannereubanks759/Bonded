@@ -9,6 +9,8 @@ public class BrokenBreaker : MonoBehaviour
     public GameObject window;
     public PickupObj pickup;
     public Parasite enemy;
+
+    public ComOffice office;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,7 @@ public class BrokenBreaker : MonoBehaviour
     {
         if(lever.activeSelf == true && window.activeSelf == true)
         {
+            office.breakerFixed = true;
             Instantiate(breaker, this.gameObject.transform.position, this.gameObject.transform.rotation);
             Destroy(this.gameObject);
         }

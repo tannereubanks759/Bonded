@@ -10,9 +10,12 @@ public class ComOffice : MonoBehaviour
     float nextTime;
 
     public Parasite parasite;
+
+    public bool breakerFixed;
     // Start is called before the first frame update
     void Start()
     {
+        breakerFixed = false;
         player = Screens.GetComponent<VideoPlayer>();
     }
 
@@ -29,8 +32,9 @@ public class ComOffice : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player" && donePlaying == false && player.isPlaying != true)
+        if(other.tag == "Player" && donePlaying == false && player.isPlaying != true && breakerFixed)
         {
+            Debug.Log("play video");
             player.Play();
             nextTime = Time.time + (float)player.length;
         }
