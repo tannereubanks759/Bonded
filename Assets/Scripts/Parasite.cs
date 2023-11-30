@@ -65,13 +65,38 @@ public class Parasite : MonoBehaviour
     }
     void Eating()
     {
-        agent.speed = 3.5f;
-        if(agent == null)
+        
+        if (!inRange(eatObject) && agent.speed == 0)
         {
-            return;
+            agent.speed = 3.5f;
         }
-        agent.SetDestination(eatObject.transform.position);
+        if (anim.GetBool("breakLight") == false)
+        {
+            if (agent.speed != 0)
+            {
+                agent.speed = 3.5f;
+                agent.SetDestination(eatObject.transform.position);
+            }
+            if (inRange(eatObject, .2f) && eatObject == EatPositions[1])
+            {
+                if(hasSleepTime == false)
+                {
+                    sleepingTime = Time.time + 2f;
+                    hasSleepTime = true;
+                }
+                //agent.speed = 0;
+                Vector3 targetDirection = GameObject.Find("LightCol").transform.position - this.transform.position;
+                float SingleStep = Time.deltaTime * 5;
+                Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, SingleStep, 0.0f);
+                transform.rotation = Quaternion.LookRotation(newDirection);
 
+                if (Time.time > sleepingTime)
+                {
+                    anim.SetBool("breakLight", true);
+                }
+            }
+        }
+        
         if(hitTimes == 5)
         {
             if(eatObject == EatPositions[EatPositions.Count - 1])
@@ -85,33 +110,11 @@ public class Parasite : MonoBehaviour
             }
             
         }
-        if (eatObject == EatPositions[1] && inRange(eatObject))
-        {
-            Debug.Log("InRange");
-            if (anim.GetBool("breakLight") == false)
-            {
-                if(agent.speed != 0 && hasSleepTime == false)
-                {
-                    sleepingTime = Time.time + 2f;
-                    hasSleepTime = true;
-                }
-                    
-                agent.speed = 0;
-                Vector3 targetDirection = GameObject.Find("LightCol").transform.position - this.transform.position;
-                float SingleStep = Time.deltaTime * 5;
-                Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, SingleStep, 0.0f);
-                transform.rotation = Quaternion.LookRotation(newDirection);
-
-                if (Time.time > sleepingTime)
-                {
-                    anim.SetBool("breakLight", true);
-                }
-            }
-        }
         
     }
     void Sleeping()
     {
+        
         anim.SetBool("breakLight", false);
         anim.SetBool("BreakLEnter", false);
         if (anim.GetBool("GoIn") == false)
