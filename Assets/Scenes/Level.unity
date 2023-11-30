@@ -149,13 +149,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50960259}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.255, y: 0.994, z: 17.605}
+  m_LocalPosition: {x: -1.504, y: 0.994, z: 17.605}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 543450653713150864}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &70111191
 PrefabInstance:
@@ -2986,6 +2985,11 @@ PrefabInstance:
     - target: {fileID: 8964296594134550932, guid: 11db075b48609f546af2f41dacd96e01,
         type: 3}
       propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964296594134550932, guid: 11db075b48609f546af2f41dacd96e01,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9013638940889411661, guid: 11db075b48609f546af2f41dacd96e01,
@@ -6039,19 +6043,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 923645703}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &932911988
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149034830380}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 7.323077, y: 0, z: 7.527204}
-  m_Center: {x: 1.3384733, y: 0.4, z: 1.4405367}
 --- !u!1001 &941245607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20950,8 +20941,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132149174954282}
   m_LocalRotation: {x: 0.00023163295, y: 0.70710677, z: 0.70710677, w: 0.00023165156}
-  m_LocalPosition: {x: -1.3753, y: 0.7, z: -0.024000168}
-  m_LocalScale: {x: 0.6729605, y: 0.67296, z: 0.67296016}
+  m_LocalPosition: {x: -1.6303, y: 1.694, z: 17.581}
+  m_LocalScale: {x: 0.6729607, y: 0.67296, z: 0.6729602}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8578240797921818886}
@@ -20959,8 +20950,8 @@ Transform:
   - {fileID: 296862879120912486}
   - {fileID: 1319409328}
   - {fileID: 2104091522}
-  m_Father: {fileID: 50960260}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: -90.034, y: 180, z: -0.037994385}
 --- !u!1 &919132147551369040
 GameObject:
@@ -21158,7 +21149,6 @@ GameObject:
   - component: {fileID: 543450652755136662}
   - component: {fileID: 3469287836537298739}
   - component: {fileID: 1711813856033205241}
-  - component: {fileID: 932911988}
   - component: {fileID: 3469287836537298740}
   m_Layer: 0
   m_Name: Small_Corridor_J-Connector

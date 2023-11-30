@@ -77,7 +77,7 @@ public class Parasite : MonoBehaviour
                 agent.speed = 3.5f;
                 agent.SetDestination(eatObject.transform.position);
             }
-            if (inRange(eatObject, .2f) && eatObject == EatPositions[1])
+            if (inRange(eatObject, 1.1f) && eatObject == EatPositions[1])
             {
                 if(hasSleepTime == false)
                 {
