@@ -41,6 +41,7 @@ public class CharacterControllerScript : MonoBehaviour
     public AudioClip[] runClips;
     public float runFrequency = .2f;
     private float runNextTime = 0;
+
     
     // Start is called before the first frame update
     void Start()

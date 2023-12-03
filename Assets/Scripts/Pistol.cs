@@ -31,9 +31,12 @@ public class Pistol : MonoBehaviour
     public AudioClip Reload;
     public AudioClip OutOfAmmoClip;
 
+    public Animator camAnim;
 
     public float fireRate;
     float nextFire;
+
+    public Parasite p;
     void Start()
     {
         sound.clip = ShootSound;
@@ -57,17 +60,26 @@ public class Pistol : MonoBehaviour
         {
             reload();
         }
+        if (Input.GetKey(aimKey))
+        {
+            camAnim.SetBool("isAiming", true);
+        }
+        else
+        {
+            camAnim.SetBool("isAiming", false);
+        }
 
     }
     void shoot()
     {
+        camAnim.SetBool("isShooting", true);
         sound.Play();
         RayOrigin = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (Physics.Raycast(RayOrigin, out hit, range, mask)){
             if(hit.collider.gameObject.tag == "parasite")
             {
                 Debug.Log("Hit Parasite");
-                hit.collider.gameObject.GetComponentInParent<BoxCollider>().gameObject.GetComponentInParent<Parasite>().damaged();
+                p.damaged();
             }
             else
             {
@@ -76,6 +88,7 @@ public class Pistol : MonoBehaviour
         }
          magazine -= 1;
          UpdateUI();
+        
     }
     void reload()
     {

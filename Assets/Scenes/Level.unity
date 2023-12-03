@@ -835,6 +835,7 @@ MonoBehaviour:
   ShootSound: {fileID: 8300000, guid: bd0e84e3502e3b949bb27e131e0d334f, type: 3}
   Reload: {fileID: 8300000, guid: de911b1814449d3419b564a6fd459394, type: 3}
   OutOfAmmoClip: {fileID: 8300000, guid: 8b0598e6e60c1764f9a82b32bd2c726b, type: 3}
+  camAnim: {fileID: 1354962659}
   fireRate: 0.3
 --- !u!82 &140372502
 AudioSource:
@@ -14658,6 +14659,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1354962656}
   - component: {fileID: 1354962657}
+  - component: {fileID: 1354962659}
+  - component: {fileID: 1354962658}
   m_Layer: 0
   m_Name: Camera Object Parent
   m_TagString: Untagged
@@ -14694,6 +14697,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goFollow: {fileID: 1923297095}
+--- !u!114 &1354962658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354962655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c387d875d6942d4bbaefa9512f1a5ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 1354962659}
+--- !u!95 &1354962659
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354962655}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a1e582a8757e8c04a9b5c290ebd3cc00, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1373824486
 GameObject:
   m_ObjectHideFlags: 0
@@ -16906,7 +16942,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 30568b6a265b7a74a88b7925f4f069d7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 30568b6a265b7a74a88b7925f4f069d7,
         type: 3}

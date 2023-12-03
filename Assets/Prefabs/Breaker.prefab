@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8234913525476631221}
   - component: {fileID: 6173517484260906623}
   - component: {fileID: 4786526855239277853}
+  - component: {fileID: 4421247374377599663}
   m_Layer: 0
   m_Name: Breaker
   m_TagString: Breaker
@@ -64,7 +65,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 2bae15dc826ff0542b7b69befe3b98e9, type: 3}
+  - {fileID: 2100000, guid: 09d10b0f4cb14bc49919178683580d0f, type: 2}
+  - {fileID: 2100000, guid: 1f01b96878067f0408f0c40e38fb665a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,6 +108,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &4421247374377599663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5668977504822982570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d2e57b90ce78a4f8979547b3c815ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 4786526855239277853}
+  fixedMat: {fileID: 2100000, guid: 09d10b0f4cb14bc49919178683580d0f, type: 2}
 --- !u!1001 &4786526854938852560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -183,6 +199,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 184e45c7df211a94d8f95d93950f69e2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 32522cc1a52335b40a303c4de7dca620, type: 2}
     - target: {fileID: 919132149155446097, guid: 184e45c7df211a94d8f95d93950f69e2,
         type: 3}
       propertyPath: m_Name
@@ -191,7 +212,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 184e45c7df211a94d8f95d93950f69e2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 184e45c7df211a94d8f95d93950f69e2,
         type: 3}
@@ -318,6 +339,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9345b59d89c266348a3bf8e56dab2ccd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1f01b96878067f0408f0c40e38fb665a, type: 2}
     - target: {fileID: 919132149155446097, guid: 9345b59d89c266348a3bf8e56dab2ccd,
         type: 3}
       propertyPath: m_Name

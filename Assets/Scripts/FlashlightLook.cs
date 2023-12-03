@@ -22,9 +22,12 @@ public class FlashlightLook : MonoBehaviour
             mouseY = Input.GetAxisRaw("Mouse Y");
             yRotation += mouseX * senseX * multiplier;
             xRotation -= mouseY * senseY * multiplier;
+            
             xRotation = Mathf.Clamp(xRotation, -45f, 45f);
+            
             this.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
         }
+
         
     }
 }

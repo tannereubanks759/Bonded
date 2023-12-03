@@ -22,6 +22,7 @@ public class PickupObj : MonoBehaviour
     void Start()
     {
         controller = player.GetComponent<CharacterControllerScript>();
+        crosshair.SetActive(false);
     }
 
     // Update is called once per frame
@@ -93,7 +94,7 @@ public class PickupObj : MonoBehaviour
             {
                 hitObj.GetComponentInParent<BoxCollider>().GetComponentInParent<Animator>().SetBool("isOpen", true);
             }
-            crosshair.GetComponent<Image>().color = Color.red;
+            crosshair.SetActive(false);
             hitObj = null;
             looking = false;
         }
@@ -104,13 +105,14 @@ public class PickupObj : MonoBehaviour
         {
             hitObj = other;
             crosshair.GetComponent<Image>().color = Color.green;
+            crosshair.SetActive(true);
             looking = true;
         }
         
     }
     private void OnTriggerExit(Collider other)
     {
-        crosshair.GetComponent<Image>().color = Color.red;
+        crosshair.SetActive(false);
         hitObj = null;
         looking = false;
     }
