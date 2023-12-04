@@ -12,11 +12,19 @@ public class ComOffice : MonoBehaviour
     public Parasite parasite;
 
     public bool breakerFixed;
+    public GameObject sparks;
+    public Animator hallPanel;
+
+    public bool breakerSwitched;
+    public GameObject circuit;
+    public GameObject dCircuit;
     // Start is called before the first frame update
     void Start()
     {
+        breakerSwitched = false;
         breakerFixed = false;
         player = Screens.GetComponent<VideoPlayer>();
+        sparks.SetActive(false);
     }
 
     // Update is called once per frame
@@ -24,15 +32,19 @@ public class ComOffice : MonoBehaviour
     {
         if(player.isPlaying == true && Time.time > nextTime && donePlaying == false)
         {
+            circuit.SetActive(false);
+            dCircuit.SetActive(true);
             parasite.TeleportToSleep();
             parasite.SetStateToEating();
+            sparks.SetActive(true);
+            hallPanel.SetBool("lights", true);
             donePlaying = true;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player" && donePlaying == false && player.isPlaying != true && breakerFixed)
+        if(other.tag == "Player" && donePlaying == false && player.isPlaying != true && breakerFixed && breakerSwitched)
         {
             Debug.Log("play video");
             player.Play();

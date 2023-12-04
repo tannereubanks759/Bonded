@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 4786526855239277853}
   fixedMat: {fileID: 2100000, guid: 09d10b0f4cb14bc49919178683580d0f, type: 2}
+  ComLightMat: {fileID: 2100000, guid: d5f2bd3b2a48ace4bb481a5a3c6ebf97, type: 2}
 --- !u!1001 &4786526854938852560
 PrefabInstance:
   m_ObjectHideFlags: 0

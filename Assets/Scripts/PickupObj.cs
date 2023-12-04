@@ -78,9 +78,9 @@ public class PickupObj : MonoBehaviour
                     breakerAnim.SetBool("isOpened", false);
                 }
             }
-            else if(hitObj.tag == "INTERACT" && hitObj.name == "Breaker_Lever")
+            else if (hitObj.tag == "INTERACT" && hitObj.name == "Breaker_Lever")
             {
-                if(breakerAnim.GetBool("isSwitched") == false)
+                if (breakerAnim.GetBool("isSwitched") == false)
                 {
                     breakerAnim.SetBool("isSwitched", true);
                 }
@@ -89,10 +89,28 @@ public class PickupObj : MonoBehaviour
                     breakerAnim.SetBool("isSwitched", false);
                 }
             }
-            
-            else if(hitObj.name == "Handle")
+
+            else if (hitObj.name == "Handle")
             {
                 hitObj.GetComponentInParent<BoxCollider>().GetComponentInParent<Animator>().SetBool("isOpen", true);
+            }
+            else if (hitObj.name == "Electrical Circuitry" && hitObj.tag == "PICKUP") 
+            {
+                isHolding = true;
+                holdingObj = hitObj.gameObject;
+                this.GetComponent<Collider>().enabled = false;
+            }
+            else if(hitObj.tag == "INTERACT" && hitObj.name == "Electrical_Panel")
+            {
+                Animator elecAnim = hitObj.GetComponent<Animator>();
+                if (elecAnim.GetBool("door") == true)
+                {
+                    elecAnim.SetBool("door", false);
+                }
+                else
+                {
+                    elecAnim.SetBool("door", true);
+                }
             }
             crosshair.SetActive(false);
             hitObj = null;
