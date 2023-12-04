@@ -296,7 +296,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You will captian this station until further notice
+  m_text: You will captain this station until further notice
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8b5c64ccee48a1e4b8522f3c8938ed97, type: 2}
   m_sharedMaterial: {fileID: -6215041724462167778, guid: 8b5c64ccee48a1e4b8522f3c8938ed97,
@@ -432,7 +432,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Welcome to TROJAN
+  m_text: Welcome to the TROJAN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8b5c64ccee48a1e4b8522f3c8938ed97, type: 2}
   m_sharedMaterial: {fileID: -6215041724462167778, guid: 8b5c64ccee48a1e4b8522f3c8938ed97,
@@ -754,7 +754,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: On behalf of all of us at Priam, Thank you for your herotism and cooperation.
+  m_text: On behalf of all of us at Priam, Thank you for your heroism and cooperation.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8b5c64ccee48a1e4b8522f3c8938ed97, type: 2}
   m_sharedMaterial: {fileID: -6215041724462167778, guid: 8b5c64ccee48a1e4b8522f3c8938ed97,
@@ -1030,7 +1030,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'Due to some unexpected complications, we''ve asked everyone to evacuate
-    emediatly. '
+    immediately. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8b5c64ccee48a1e4b8522f3c8938ed97, type: 2}
   m_sharedMaterial: {fileID: -6215041724462167778, guid: 8b5c64ccee48a1e4b8522f3c8938ed97,

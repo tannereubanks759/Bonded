@@ -8,6 +8,8 @@ public class FixedBreaker : MonoBehaviour
     public Material fixedMat;
     public Material ComLightMat;
     public ComOffice office;
+
+    public Animator Coms;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,7 @@ public class FixedBreaker : MonoBehaviour
         ComLightMat.EnableKeyword("_EMISSION");
         ComLightMat.SetColor("_EmissionColor", Color.red);
         office = GameObject.FindObjectOfType<ComOffice>();
+        Coms = GameObject.Find("Communications Area").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -26,6 +29,7 @@ public class FixedBreaker : MonoBehaviour
 
     public void turnLightsGreen()
     {
+        Coms.SetBool("breakerFixed", true);
         fixedMat.EnableKeyword("_EMISSION");
         fixedMat.SetColor("_EmissionColor", Color.green);
         ComLightMat.EnableKeyword("_EMISSION");

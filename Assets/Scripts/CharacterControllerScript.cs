@@ -42,6 +42,8 @@ public class CharacterControllerScript : MonoBehaviour
     public float runFrequency = .2f;
     private float runNextTime = 0;
 
+    public AudioClip putAway;
+    public AudioSource oneShotSource;
     
     // Start is called before the first frame update
     void Start()
@@ -136,6 +138,7 @@ public class CharacterControllerScript : MonoBehaviour
 
         if (Input.GetKeyDown(flashlight) && hasFlashlight)
         {
+            oneShotSource.PlayOneShot(putAway, 1f);
             if (flashlightObj.activeSelf)
             {
                 flashlightObj.SetActive(false);
@@ -147,6 +150,7 @@ public class CharacterControllerScript : MonoBehaviour
         }
         if (Input.GetKeyDown(pistol) && hasGun)
         {
+            oneShotSource.PlayOneShot(putAway, 1f);
             if (pistolObj.activeSelf)
             {
                 pistolObj.SetActive(false);

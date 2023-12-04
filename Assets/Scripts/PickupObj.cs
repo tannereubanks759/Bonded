@@ -18,6 +18,8 @@ public class PickupObj : MonoBehaviour
 
     public bool isHolding = false;
     public GameObject holdingObj;
+
+    public AudioSource doorSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -92,7 +94,12 @@ public class PickupObj : MonoBehaviour
 
             else if (hitObj.name == "Handle")
             {
+                if(doorSound.isPlaying == false)
+                {
+                    doorSound.Play();
+                }
                 hitObj.GetComponentInParent<BoxCollider>().GetComponentInParent<Animator>().SetBool("isOpen", true);
+                
             }
             else if (hitObj.name == "Electrical Circuitry" && hitObj.tag == "PICKUP") 
             {
