@@ -507,6 +507,7 @@ MonoBehaviour:
   pickupPos: {fileID: 1612145985}
   isHolding: 0
   holdingObj: {fileID: 0}
+  doorSound: {fileID: 0}
 --- !u!65 &116467089
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12013,6 +12014,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a3fa9d98642a80548a8296355882fee9, type: 3}
   - {fileID: 8300000, guid: a3fa9d98642a80548a8296355882fee9, type: 3}
   runFrequency: 0.4
+  putAway: {fileID: 0}
+  oneShotSource: {fileID: 0}
 --- !u!4 &985495885
 Transform:
   m_ObjectHideFlags: 0
@@ -27805,7 +27808,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 6919195209785936731, guid: 14d87aa1d998e1345b6b9696b5f7b6a2, type: 3}
-  - {fileID: 4094046721294144533, guid: 14d87aa1d998e1345b6b9696b5f7b6a2, type: 3}
+  - {fileID: 2100000, guid: 773274134edb87c41b736f36ee5c4474, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
