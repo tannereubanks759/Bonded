@@ -503,7 +503,7 @@ MonoBehaviour:
   crosshair: {fileID: 1301606158}
   player: {fileID: 985495880}
   pickupKey: 101
-  breakerAnim: {fileID: 0}
+  breakerAnim: {fileID: 522710327}
   pickupPos: {fileID: 1612145985}
   isHolding: 0
   holdingObj: {fileID: 0}
@@ -13346,6 +13346,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.0536888, y: 1.7771195, z: 2.2942176}
   m_Center: {x: -0.13387015, y: -0.14496468, z: 1.0291371}
+--- !u!95 &522710327
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522710319}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3d132fa4abf88c74f95a899acc2501dd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1001 &527925124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32257,6 +32277,7 @@ GameObject:
   - component: {fileID: 919132147551369044}
   - component: {fileID: 919132147551369043}
   - component: {fileID: 919132147551369042}
+  - component: {fileID: 919132147551369046}
   m_Layer: 0
   m_Name: Communications Area
   m_TagString: Untagged
@@ -32329,6 +32350,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9.178922, y: 0, z: 3.795452}
   m_Center: {x: -3.6914744, y: -3.1, z: -0.030944824}
+--- !u!95 &919132147551369046
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147551369040}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2d4efb5197770147afff247ab787912, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &919132147913760557
 GameObject:
   m_ObjectHideFlags: 0
