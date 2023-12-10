@@ -14,13 +14,22 @@ public class ComOffice : MonoBehaviour
     public bool breakerFixed;
     public GameObject sparks;
     public Animator hallPanel;
+    public MeshRenderer hallPanelRender;
 
     public bool breakerSwitched;
     public GameObject circuit;
     public GameObject dCircuit;
+    public Material circuitDestroyedMat;
+    public Material circuitMat;
+    public Material ComOfficeMat;
+    public GameObject ColWall;
+    
     // Start is called before the first frame update
     void Start()
     {
+        ColWall.SetActive(false);
+        hallPanelRender.material = circuitMat;
+        ComOfficeMat.SetColor("_EmissionColor", Color.red);
         breakerSwitched = false;
         breakerFixed = false;
         player = Screens.GetComponent<VideoPlayer>();
@@ -32,12 +41,16 @@ public class ComOffice : MonoBehaviour
     {
         if(player.isPlaying == true && Time.time > nextTime && donePlaying == false)
         {
+            hallPanelRender.material = circuitDestroyedMat;
+            ColWall.SetActive(false);
             circuit.SetActive(false);
             dCircuit.SetActive(true);
             parasite.TeleportToSleep();
             parasite.SetStateToEating();
             sparks.SetActive(true);
             hallPanel.SetBool("lights", true);
+            hallPanel.gameObject.GetComponent<AudioSource>().Play();
+            GameObject.Find("Alarm").GetComponent<AudioSource>().Play();
             donePlaying = true;
         }
     }
@@ -49,6 +62,7 @@ public class ComOffice : MonoBehaviour
             Debug.Log("play video");
             player.Play();
             nextTime = Time.time + (float)player.length;
+            ColWall.SetActive(true);
         }
     }
 }

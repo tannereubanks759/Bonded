@@ -24,6 +24,7 @@ public class BrokenBreaker : MonoBehaviour
         if(lever.activeSelf == true && window.activeSelf == true)
         {
             office.breakerFixed = true;
+            Destroy(lever);
             Instantiate(breaker, this.gameObject.transform.position, this.gameObject.transform.rotation);
             Destroy(this.gameObject);
         }
@@ -33,14 +34,15 @@ public class BrokenBreaker : MonoBehaviour
     {
         if (enemy.state == Parasite.enemyStates.Sleeping)
         {
-            if (other.name == lever.name)
-            {
-                lever.SetActive(true);
-                pickup.DropAndDelete();
-            }
             if (other.name == window.name)
             {
                 window.SetActive(true);
+                pickup.DropAndDelete();
+            }
+            if (other.gameObject.layer == lever.gameObject.layer)
+            {
+                Debug.Log("Lever Input");
+                lever.SetActive(true);
                 pickup.DropAndDelete();
             }
         }

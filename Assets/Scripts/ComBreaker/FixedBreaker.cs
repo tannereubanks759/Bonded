@@ -13,6 +13,7 @@ public class FixedBreaker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         fixedMat.EnableKeyword("_EMISSION");
         fixedMat.SetColor("_EmissionColor", Color.red);
         ComLightMat.EnableKeyword("_EMISSION");
@@ -29,6 +30,8 @@ public class FixedBreaker : MonoBehaviour
 
     public void turnLightsGreen()
     {
+        this.GetComponent<AudioSource>().Play();
+        GameObject.Find("Alarm").GetComponent<AudioSource>().Stop();
         Coms.SetBool("breakerFixed", true);
         fixedMat.EnableKeyword("_EMISSION");
         fixedMat.SetColor("_EmissionColor", Color.green);

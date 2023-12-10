@@ -62,7 +62,7 @@ public class PickupObj : MonoBehaviour
                 holdingObj = hitObj.gameObject;
                 this.GetComponent<Collider>().enabled = false;
             }
-            else if (hitObj.tag == "PICKUP" && hitObj.name == "Breaker_Lever")
+            else if (hitObj.tag == "PICKUP" && hitObj.name == "Breaker_Lever1")
             {
                 isHolding = true;
                 holdingObj = hitObj.gameObject;

@@ -84,16 +84,14 @@ public class CharacterControllerScript : MonoBehaviour
             controller.Move(velocity * Time.deltaTime);
 
             //sounds of walking and running
-            if((horizontal > .1 || vertical > .1 || horizontal < -.1 || vertical < -.1) && walkSource.isPlaying == false  && Input.GetKey(sprint) == false)
+            if((horizontal > .1 || vertical > .1 || horizontal < -.1 || vertical < -.1) && Input.GetKey(sprint) == false && Time.time > runNextTime)
             {
-                walkSource.Play();
+                int random = (int)Random.Range(1, runClips.Length);
+                walkSource.PlayOneShot(runClips[random], .5f);
+                runNextTime = Time.time + (runFrequency * 1.7f);
             }
             else if(Input.GetKey(sprint) && (horizontal > .1 || vertical > .1) && Time.time > runNextTime)
             {
-                if(walkSource.isPlaying == false)
-                {
-                    walkSource.Play();
-                }
                 int random = (int)Random.Range(1, runClips.Length);
                 walkSource.PlayOneShot(runClips[random], 1);
                 runNextTime = Time.time + runFrequency;

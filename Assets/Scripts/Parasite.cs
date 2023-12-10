@@ -26,6 +26,11 @@ public class Parasite : MonoBehaviour
     private float sleepingTime = 0;
 
     private bool hasSleepTime;
+    public AudioSource source;
+    public AudioClip PanelHit;
+
+    public AudioSource damagedSource;
+    public AudioClip ventClip;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -66,6 +71,10 @@ public class Parasite : MonoBehaviour
     void Eating()
     {
         
+        if(source.isPlaying == false)
+        {
+            source.Play();
+        }
         if (!inRange(eatObject) && agent.speed == 0)
         {
             agent.speed = 3.5f;
@@ -136,6 +145,7 @@ public class Parasite : MonoBehaviour
                 
                 if(Time.time > sleepingTime)
                 {
+                    source.PlayOneShot(ventClip, 1f);
                     anim.SetBool("GoIn", true);
                 }
 
@@ -147,6 +157,11 @@ public class Parasite : MonoBehaviour
     public void damaged()
     {
         hitTimes += 1;
+        if(damagedSource.isPlaying == false)
+        {
+            damagedSource.Play();
+        }
+        
     }
 
     public bool inRange(GameObject obj)
@@ -166,11 +181,13 @@ public class Parasite : MonoBehaviour
     }
     public void TeleportToSleep()
     {
+        
         agent.Warp(sleepObject.transform.position);
     }
 
     public void DoneVenting()
     {
+        source.Stop();
         anim.SetBool("GoIn", false);
         sleepObject = SleepPositions[SleepPositions.IndexOf(sleepObject) + 1];  //go to next vent the next time this parasite sleeps
         agent.Warp(parasiteHome.transform.position);
@@ -179,5 +196,10 @@ public class Parasite : MonoBehaviour
     public void EnterBreakPanel()
     {
         anim.SetBool("BreakLEnter", true);
+    }
+
+    public void playPanelHitSound()
+    {
+        source.PlayOneShot(PanelHit, 1f);
     }
 }
